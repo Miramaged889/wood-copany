@@ -1,20 +1,24 @@
 
-import { ArrowDown, Star, Award, Users } from 'lucide-react';
+
+import { ArrowDown, Star, Award, Users } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+    >
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')`
+          backgroundImage: `url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop')`,
         }}
       />
-      
+
       {/* Overlay */}
       <div className="absolute inset-0 hero-gradient" />
-      
+
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         <div className="mb-8">
@@ -25,7 +29,8 @@ const Hero = () => {
             النخبة في تجارة وتصنيع الأخشاب والديكورات
           </h2>
           <p className="text-lg md:text-xl mb-12 leading-relaxed max-w-2xl mx-auto">
-            نحن نقدم أجود أنواع الأخشاب وأرقى التصاميم الداخلية والخارجية للقصور والمكاتب والمشاريع التجارية
+            نحن نقدم أجود أنواع الأخشاب وأرقى التصاميم الداخلية والخارجية للقصور
+            والمكاتب والمشاريع التجارية
           </p>
         </div>
 

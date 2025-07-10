@@ -1,17 +1,10 @@
-import { useState, useEffect } from "react";
+
+
+import { useState } from "react";
 import { Menu, X, TreePine } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navItems = [
     { href: "#home", label: "الرئيسية" },
@@ -23,11 +16,7 @@ const Header = () => {
   ];
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
-    >
+    <header className="w-full z-50 bg-white shadow-lg fixed top-0">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -49,11 +38,7 @@ const Header = () => {
               <a
                 key={item.href}
                 href={item.href}
-                className={`nav-link font-medium transition-colors ${
-                  isScrolled
-                    ? "text-[#2E2E2E] hover:text-[#8B5E3C]"
-                    : "text-white hover:text-[#C49E55]"
-                }`}
+                className="nav-link font-medium transition-colors text-[#2E2E2E] hover:text-[#8B5E3C]"
               >
                 {item.label}
               </a>
@@ -63,11 +48,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`lg:hidden p-2 rounded-md transition-colors ${
-              isScrolled
-                ? "text-[#2E2E2E] hover:bg-gray-100"
-                : "text-white hover:bg-white/10"
-            }`}
+            className="lg:hidden p-2 rounded-md transition-colors text-[#2E2E2E] hover:bg-gray-100"
           >
             {isMenuOpen ? (
               <X className="h-6 w-6" />
