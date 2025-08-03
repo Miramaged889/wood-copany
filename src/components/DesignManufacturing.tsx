@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState, useEffect } from "react";
 import { Eye, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface GalleryItem {
@@ -9,76 +9,41 @@ interface GalleryItem {
   description: string;
 }
 
+interface DesignManufacturingData {
+  categories: string[];
+  gallery: GalleryItem[];
+}
+
 const DesignManufacturing = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("جميع الأعمال");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [data, setData] = useState<DesignManufacturingData>({
+    categories: [],
+    gallery: [],
+  });
+  const [loading, setLoading] = useState(true);
 
-  const categories = [
-    "جميع الأعمال",
-    "مطابخ خشبية",
-    "ديكورات خشبية - مكاتب إدارية",
-    "تأثيث فنادق",
-    "أعمال خشبية خارجية",
-    "وحدات تلفزيون - أثاث - ديكورات داخلية - خزائن",
-    "أبواب خشبية",
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/data.json");
+        const jsonData = await response.json();
+        setData(jsonData.designManufacturing);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching design manufacturing data:", error);
+        setLoading(false);
+      }
+    };
 
-  const gallery = [
-    {
-      id: 1,
-      image:
-        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
-      category: "مطابخ خشبية",
-      title: "مطبخ خشبي فاخر",
-      description: "تصميم وتنفيذ مطبخ خشبي بأحدث التقنيات والتشطيبات",
-    },
-    {
-      id: 2,
-      image:
-        "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800",
-      category: "ديكورات خشبية - مكاتب إدارية",
-      title: "مكتب إداري متميز",
-      description: "تصميم مكتب إداري بديكورات خشبية أنيقة",
-    },
-    {
-      id: 3,
-      image:
-        "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=800",
-      category: "تأثيث فنادق",
-      title: "تأثيث غرف فندقية",
-      description: "تأثيث كامل لغرف فندقية بأثاث خشبي راقي",
-    },
-    {
-      id: 4,
-      image:
-        "https://images.pexels.com/photos/1571471/pexels-photo-1571471.jpeg?auto=compress&cs=tinysrgb&w=800",
-      category: "أعمال خشبية خارجية",
-      title: "ديكورات خارجية",
-      description: "تنفيذ ديكورات خشبية خارجية مقاومة للعوامل الجوية",
-    },
-    {
-      id: 5,
-      image:
-        "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=800",
-      category: "وحدات تلفزيون - أثاث - ديكورات داخلية - خزائن",
-      title: "وحدة تلفزيون عصرية",
-      description: "تصميم وتنفيذ وحدة تلفزيون بتصميم عصري",
-    },
-    {
-      id: 6,
-      image:
-        "https://images.pexels.com/photos/1571457/pexels-photo-1571457.jpeg?auto=compress&cs=tinysrgb&w=800",
-      category: "أبواب خشبية",
-      title: "أبواب خشبية فاخرة",
-      description: "تصنيع أبواب خشبية بتصاميم كلاسيكية وعصرية",
-    },
-  ];
+    fetchData();
+  }, []);
 
   const filteredGallery =
     selectedCategory === "جميع الأعمال"
-      ? gallery
-      : gallery.filter((item) => item.category === selectedCategory);
+      ? data.gallery
+      : data.gallery.filter((item) => item.category === selectedCategory);
 
   const openModal = (item: GalleryItem, index: number) => {
     setSelectedImage(item);
@@ -104,6 +69,19 @@ const DesignManufacturing = () => {
     setSelectedImage(filteredGallery[prevIndex]);
   };
 
+  if (loading) {
+    return (
+      <section id="design-manufacturing" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B5E3C] mx-auto"></div>
+            <p className="mt-4 text-gray-600">جاري التحميل...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="design-manufacturing" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -120,7 +98,7 @@ const DesignManufacturing = () => {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {data.categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
@@ -151,7 +129,7 @@ const DesignManufacturing = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                   <div className="bg-white text-[#2E2E2E] px-4 py-2 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center">
-                    <Eye className="w-4 h-4 ml-2" />
+                    <Eye className="h-4 w-4 ml-2" />
                     عرض التفاصيل
                   </div>
                 </div>

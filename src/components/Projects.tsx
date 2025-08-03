@@ -1,56 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  description: string;
+}
+
+interface ProjectsData {
+  categories: string[];
+  projects: Project[];
+}
 
 const Projects = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const projects = [
-    {
-      id: 1,
-      title: "غرفة نوم فاخرة",
-      category: "سكني",
-      image: "/images/projects/BED ROOM.jpeg",
-      description:
-        "تصميم وتنفيذ غرفة نوم بأسلوب عصري مع استخدام أجود أنواع الأخشاب",
-    },
-    {
-      id: 2,
-      title: "سقف داخلي خشبي",
-      category: "سكني",
-      image: "/images/projects/CEILING INDOOR.jpeg",
-      description: "تصميم سقف داخلي بالخشب الطبيعي مع إضاءة مدمجة",
-    },
-    {
-      id: 3,
-      title: "حمام رخامي فاخر",
-      category: "سكني",
-      image: "/images/projects/BATH ROOM.jpeg",
-      description: "تصميم حمام فاخر بالرخام مع لمسات خشبية أنيقة",
-    },
-    {
-      id: 4,
-      title: "تصميم قبو فاخر",
-      category: "تجاري",
-      image: "/images/projects/BASMENT.jpeg",
-      description: "تصميم وتنفيذ قبو بتشطيبات خشبية راقية",
-    },
-    {
-      id: 5,
-      title: "جدار خشبي مميز",
-      category: "تجاري",
-      image: "/images/projects/B2.jpeg",
-      description: "تغليف جدار بألواح خشبية مع إضاءة خفية",
-    },
-  ];
-
-  const categories = ["الكل", "سكني", "تجاري"];
+  const [data, setData] = useState<ProjectsData>({ categories: [], projects: [] });
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("الكل");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/data.json');
+        const jsonData = await response.json();
+        setData(jsonData.projects);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching projects data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const filteredProjects =
     activeCategory === "الكل"
-      ? projects
-      : projects.filter((project) => project.category === activeCategory);
+      ? data.projects
+      : data.projects.filter((project) => project.category === activeCategory);
 
   const openModal = (imageSrc: string, index: number) => {
     setSelectedImage(imageSrc);
@@ -76,6 +66,19 @@ const Projects = () => {
     setSelectedImage(filteredProjects[prevIndex].image);
   };
 
+  if (loading) {
+    return (
+      <section id="projects" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B5E3C] mx-auto"></div>
+            <p className="mt-4 text-gray-600">جاري التحميل...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -91,7 +94,7 @@ const Projects = () => {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {data.categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}

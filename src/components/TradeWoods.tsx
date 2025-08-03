@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Phone,
   MessageCircle,
@@ -17,57 +17,38 @@ interface Product {
   specifications: string;
 }
 
+interface TradeWoodsData {
+  categories: string[];
+  products: Product[];
+}
+
 const TradeWoods = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const products = [
-    {
-      id: 1,
-      name: "أخشاب معالجة حرارياً - Thermowood",
-      category: "الأخشاب المعالجة - Thermowood",
-      image: "images/woods/wood10.jpg",
-      description: "أخشاب معالجة حرارياً عالية الجودة، مقاومة للرطوبة والحشرات",
-      specifications: "مقاسات متنوعة، معالجة حرارياً، مقاومة للعوامل الجوية",
-    },
-    {
-      id: 2,
-      name: "أخشاب الصنوبر المعالج",
-      category: "الأخشاب المعالجة - Thermowood",
-      image: "images/woods/wood2.jpg",
-      description: "أخشاب صنوبر معالجة مناسبة للاستخدامات الخارجية والداخلية",
-      specifications: "مقاسات: 2×4، 2×6، 2×8 بوصة، أطوال متنوعة",
-    },
-    {
-      id: 3,
-      name: "أخشاب خرسانية للبناء",
-      category: "أخشاب خرسانية ومواد بناء",
-      image: "images/woods/wood8.jpg",
-      description:
-        "أخشاب خرسانية عالية الجودة للاستخدام في أعمال البناء والتشييد",
-      specifications: "مقاومة عالية، مناسبة للأحمال الثقيلة، معالجة ضد الرطوبة",
-    },
-    {
-      id: 4,
-      name: "ألواح خشبية مضغوطة",
-      category: "أخشاب خرسانية ومواد بناء",
-      image: "images/woods/wood14.jpg",
-      description: "ألواح خشبية مضغوطة عالية الكثافة للاستخدامات المتنوعة",
-      specifications: "سماكات: 12مم، 18مم، 25مم، أبعاد قياسية",
-    },
-  ];
-
-  const categories = [
-    "جميع المنتجات",
-    "الأخشاب المعالجة - Thermowood",
-    "أخشاب خرسانية ومواد بناء",
-  ];
+  const [data, setData] = useState<TradeWoodsData>({ categories: [], products: [] });
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("جميع المنتجات");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/data.json');
+        const jsonData = await response.json();
+        setData(jsonData.tradeWoods);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching trade woods data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const filteredProducts =
     selectedCategory === "جميع المنتجات"
-      ? products
-      : products.filter((product) => product.category === selectedCategory);
+      ? data.products
+      : data.products.filter((product) => product.category === selectedCategory);
 
   const openModal = (product: Product, index: number) => {
     setSelectedProduct(product);
@@ -93,6 +74,19 @@ const TradeWoods = () => {
     setSelectedProduct(filteredProducts[prevIndex]);
   };
 
+  if (loading) {
+    return (
+      <section id="trade-woods" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8B5E3C] mx-auto"></div>
+            <p className="mt-4 text-gray-600">جاري التحميل...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="trade-woods" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -109,7 +103,7 @@ const TradeWoods = () => {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {data.categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
