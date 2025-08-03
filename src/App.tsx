@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Partners from "./components/Partners";
+import DesignManufacturing from "./components/DesignManufacturing";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <About />
       <Services />
       <TradeWoods />
+      <DesignManufacturing />
       <Projects />
       <Partners />
       <Contact />

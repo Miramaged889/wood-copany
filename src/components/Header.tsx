@@ -11,6 +11,7 @@ const Header = () => {
     { href: "#about", label: "من نحن" },
     { href: "#services", label: "خدماتنا" },
     { href: "#trade-woods", label: "تجارة الأخشاب" },
+    { href: "#design-manufacturing", label: "تصميم وتصنيع" },
     { href: "#projects", label: "مشاريعنا" },
     { href: "#contact", label: "تواصل معنا" },
   ];
