@@ -17,19 +17,22 @@ interface ProjectsData {
 const Projects = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [data, setData] = useState<ProjectsData>({ categories: [], projects: [] });
+  const [data, setData] = useState<ProjectsData>({
+    categories: [],
+    projects: [],
+  });
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("الكل");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/data.json');
+        const response = await fetch("/data.json");
         const jsonData = await response.json();
         setData(jsonData.projects);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching projects data:', error);
+        console.error("Error fetching projects data:", error);
         setLoading(false);
       }
     };

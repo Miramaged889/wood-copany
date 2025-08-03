@@ -25,19 +25,22 @@ interface TradeWoodsData {
 const TradeWoods = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [data, setData] = useState<TradeWoodsData>({ categories: [], products: [] });
+  const [data, setData] = useState<TradeWoodsData>({
+    categories: [],
+    products: [],
+  });
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("جميع المنتجات");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/data.json');
+        const response = await fetch("/data.json");
         const jsonData = await response.json();
         setData(jsonData.tradeWoods);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching trade woods data:', error);
+        console.error("Error fetching trade woods data:", error);
         setLoading(false);
       }
     };
@@ -48,7 +51,9 @@ const TradeWoods = () => {
   const filteredProducts =
     selectedCategory === "جميع المنتجات"
       ? data.products
-      : data.products.filter((product) => product.category === selectedCategory);
+      : data.products.filter(
+          (product) => product.category === selectedCategory
+        );
 
   const openModal = (product: Product, index: number) => {
     setSelectedProduct(product);
