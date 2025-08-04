@@ -1,19 +1,38 @@
 import React, { useState } from "react";
 import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
+import { ContactFormData, submitContactForm } from "../utils/contactApi";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     phone: "",
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("تم إرسال رسالتك بنجاح! سنتواصل معك قريباً");
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const result = await submitContactForm(formData);
+
+      if (result.success) {
+        alert(result.message);
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        alert(
+          result.error || "حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى"
+        );
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -212,10 +231,20 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-[#8B5E3C] to-[#C49E55] hover:from-[#C49E55] hover:to-[#8B5E3C] text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center space-x-3 space-x-reverse shadow-lg hover:shadow-xl"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-[#8B5E3C] to-[#C49E55] hover:from-[#C49E55] hover:to-[#8B5E3C] text-white py-4 px-8 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center space-x-3 space-x-reverse shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send className="h-6 w-6" />
-                  <span>إرسال الرسالة</span>
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+                      <span>جاري الإرسال...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-6 w-6" />
+                      <span>إرسال الرسالة</span>
+                    </>
+                  )}
                 </button>
               </form>
             </div>
