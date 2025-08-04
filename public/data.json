@@ -10,7 +10,7 @@
         "id": 1,
         "name": "أخشاب معالجة حرارياً - Thermowood",
         "category": "الأخشاب المعالجة - Thermowood",
-        "image": "images/woods/wood10.jpg",
+        "image": "images/woods/1.jpg",
         "description": "أخشاب معالجة حرارياً عالية الجودة، مقاومة للرطوبة والحشرات",
         "specifications": "مقاسات متنوعة، معالجة حرارياً، مقاومة للعوامل الجوية"
       },
@@ -18,25 +18,73 @@
         "id": 2,
         "name": "أخشاب الصنوبر المعالج",
         "category": "الأخشاب المعالجة - Thermowood",
-        "image": "images/woods/wood2.jpg",
+        "image": "images/woods/2.jpg",
         "description": "أخشاب صنوبر معالجة مناسبة للاستخدامات الخارجية والداخلية",
         "specifications": "مقاسات: 2×4، 2×6، 2×8 بوصة، أطوال متنوعة"
       },
       {
         "id": 3,
         "name": "أخشاب خرسانية للبناء",
-        "category": "أخشاب خرسانية ومواد بناء",
-        "image": "images/woods/wood8.jpg",
+        "category": "الأخشاب المعالجة - Thermowood",
+        "image": "images/woods/3.jpg",
         "description": "أخشاب خرسانية عالية الجودة للاستخدام في أعمال البناء والتشييد",
         "specifications": "مقاومة عالية، مناسبة للأحمال الثقيلة، معالجة ضد الرطوبة"
       },
       {
         "id": 4,
         "name": "ألواح خشبية مضغوطة",
-        "category": "أخشاب خرسانية ومواد بناء",
-        "image": "images/woods/wood14.jpg",
+        "category": "الأخشاب المعالجة - Thermowood",
+        "image": "images/woods/4.jpg",
         "description": "ألواح خشبية مضغوطة عالية الكثافة للاستخدامات المتنوعة",
         "specifications": "سماكات: 12مم، 18مم، 25مم، أبعاد قياسية"
+      },
+      {
+        "id": 5,
+        "name": "ألواح خشبية مضغوطة",
+        "category": "الأخشاب المعالجة - Thermowood",
+        "image": "images/woods/5.jpg",
+        "description": "ألواح خشبية مضغوطة عالية الكثافة للاستخدامات المتنوعة",
+        "specifications": "سماكات: 12مم، 18مم، 25مم، أبعاد قياسية"
+      },
+      {
+        "id": 6,
+        "name": "مواد بناء عالية الجودة",
+        "category": "أخشاب خرسانية ومواد بناء",
+        "image": "images/matrial/1.jpg",
+        "description": "مواد بناء عالية الجودة للاستخدامات المتنوعة",
+        "specifications": "مواد بناء عالية الجودة للاستخدامات المتنوعة"
+      },
+      {
+        "id": 6,
+        "name": "مواد بناء عالية الجودة",
+        "category": "أخشاب خرسانية ومواد بناء",
+        "image": "images/matrial/2.jpg",
+        "description": "مواد بناء عالية الجودة للاستخدامات المتنوعة",
+        "specifications": "مواد بناء عالية الجودة للاستخدامات المتنوعة"
+      },
+      {
+        "id": 7,
+        "name": "مواد بناء عالية الجودة",
+        "category": "أخشاب خرسانية ومواد بناء",
+        "image": "images/matrial/3.jpg",
+        "description": "مواد بناء عالية الجودة للاستخدامات المتنوعة",
+        "specifications": "مواد بناء عالية الجودة للاستخدامات المتنوعة"
+      },
+      {
+        "id": 8,
+        "name": "مواد بناء عالية الجودة",
+        "category": "أخشاب خرسانية ومواد بناء",
+        "image": "images/matrial/5.jpg",
+        "description": "مواد بناء عالية الجودة للاستخدامات المتنوعة",
+        "specifications": "مواد بناء عالية الجودة للاستخدامات المتنوعة"
+      },
+      {
+        "id": 9,
+        "name": "مواد بناء عالية الجودة",
+        "category": "أخشاب خرسانية ومواد بناء",
+        "image": "images/matrial/6.jpg",
+        "description": "مواد بناء عالية الجودة للاستخدامات المتنوعة",
+        "specifications": "مواد بناء عالية الجودة للاستخدامات المتنوعة"
       }
     ]
   },
@@ -53,45 +101,150 @@
     "gallery": [
       {
         "id": 1,
-        "image": "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "image": "images/ketchin/img1.jpg",
         "category": "مطابخ خشبية",
         "title": "مطبخ خشبي فاخر",
         "description": "تصميم وتنفيذ مطبخ خشبي بأحدث التقنيات والتشطيبات"
       },
       {
         "id": 2,
-        "image": "https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "image": "images/ketchin/img2.jpg",
+        "category": "مطابخ خشبية",
+        "title": "مطبخ خشبي فاخر",
+        "description": "تصميم وتنفيذ مطبخ خشبي بأحدث التقنيات والتشطيبات"
+      },
+      {
+        "id": 3,
+        "image": "images/ketchin/img4.jpg",
+        "category": "مطابخ خشبية",
+        "title": "مطبخ خشبي فاخر",
+        "description": "تصميم وتنفيذ مطبخ خشبي بأحدث التقنيات والتشطيبات"
+      },
+      {
+        "id": 4,
+        "image": "images/disk/img1.jpg",
         "category": "ديكورات خشبية - مكاتب إدارية",
         "title": "مكتب إداري متميز",
         "description": "تصميم مكتب إداري بديكورات خشبية أنيقة"
       },
       {
-        "id": 3,
-        "image": "https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "id": 5,
+        "image": "images/disk/img2.jpg",
+        "category": "ديكورات خشبية - مكاتب إدارية",
+        "title": "مكتب إداري متميز",
+        "description": "تصميم مكتب إداري بديكورات خشبية أنيقة"
+      },
+      {
+        "id": 6,
+        "image": "images/disk/img3.jpg",
+       "category": "ديكورات خشبية - مكاتب إدارية",
+        "title": "مكتب إداري متميز",
+        "description": "تصميم مكتب إداري بديكورات خشبية أنيقة"
+      },
+      {
+        "id": 7,
+        "image": "images/hotel/2.jpg",
         "category": "تأثيث فنادق",
         "title": "تأثيث غرف فندقية",
         "description": "تأثيث كامل لغرف فندقية بأثاث خشبي راقي"
       },
       {
-        "id": 4,
-        "image": "https://images.pexels.com/photos/1571471/pexels-photo-1571471.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "id": 8,
+        "image": "images/hotel/3.jpg",
+        "category": "تأثيث فنادق",
+        "title": "تأثيث غرف فندقية",
+        "description": "تأثيث كامل لغرف فندقية بأثاث خشبي راقي"
+      },
+      {
+        "id": 9,
+        "image": "images/hotel/8.jpg",
+        "category": "تأثيث فنادق",
+        "title": "تأثيث غرف فندقية",
+        "description": "تأثيث كامل لغرف فندقية بأثاث خشبي راقي"
+      },
+      {
+        "id": 10,
+        "image": "images/workofwods/1.jpeg",
         "category": "أعمال خشبية خارجية",
-        "title": "ديكورات خارجية",
-        "description": "تنفيذ ديكورات خشبية خارجية مقاومة للعوامل الجوية"
+        "title": "أعمال خشبية خارجية متميزة",
+        "description": "تنفيذ أعمال خشبية خارجية بأجود الخامات والتشطيبات العالية"
       },
       {
-        "id": 5,
-        "image": "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "id": 11,
+        "image": "images/workofwods/2.jpeg",
+        "category": "أعمال خشبية خارجية",
+        "title": "ديكورات خشبية خارجية",
+        "description": "تصميم وتنفيذ ديكورات خشبية خارجية مقاومة للعوامل الجوية"
+      },
+      {
+        "id": 12,
+        "image": "images/decoor/1.jpg",
         "category": "وحدات تلفزيون - أثاث - ديكورات داخلية - خزائن",
-        "title": "وحدة تلفزيون عصرية",
-        "description": "تصميم وتنفيذ وحدة تلفزيون بتصميم عصري"
+        "title": "ديكورات خشبية داخلية",
+        "description": "تصميم وتنفيذ ديكورات خشبية داخلية"
       },
       {
-        "id": 6,
-        "image": "https://images.pexels.com/photos/1571457/pexels-photo-1571457.jpeg?auto=compress&cs=tinysrgb&w=800",
+        "id": 13,
+        "image": "images/decoor/2.jpeg",
+        "category": "وحدات تلفزيون - أثاث - ديكورات داخلية - خزائن",
+        "title": "ديكورات خشبية داخلية",
+        "description": "تصميم وتنفيذ ديكورات خشبية داخلية"
+      },
+      {
+        "id": 14,
+        "image": "images/decoor/3.jpeg",
+        "category": "وحدات تلفزيون - أثاث - ديكورات داخلية - خزائن",
+        "title": "ديكورات خشبية داخلية",
+        "description": "تصميم وتنفيذ ديكورات خشبية داخلية"
+      },
+      {
+        "id": 15,
+        "image": "images/decoor/5.jpg",
+        "category": "وحدات تلفزيون - أثاث - ديكورات داخلية - خزائن",
+        "title": "ديكورات خشبية داخلية",
+        "description": "تصميم وتنفيذ ديكورات خشبية داخلية"
+      },
+      {
+        "id": 16,
+        "image": "images/decoor/6.jpeg",
+        "category": "وحدات تلفزيون - أثاث - ديكورات داخلية - خزائن",
+        "title": "ديكورات خشبية داخلية",
+        "description": "تصميم وتنفيذ ديكورات خشبية داخلية"
+      },
+      {
+        "id": 17,
+        "image": "images/doors/1.jpg",
         "category": "أبواب خشبية",
-        "title": "أبواب خشبية فاخرة",
-        "description": "تصنيع أبواب خشبية بتصاميم كلاسيكية وعصرية"
+        "title": "أبواب خشبية",
+        "description": "تصميم وتنفيذ أبواب خشبية"
+      },
+      {
+        "id": 18,
+        "image": "images/doors/2.jpg",
+        "category": "أبواب خشبية",
+        "title": "أبواب خشبية",
+        "description": "تصميم وتنفيذ أبواب خشبية"
+      },
+      {
+        "id": 19,
+        "image": "images/doors/3.jpg",
+        "category": "أبواب خشبية",
+        "title": "أبواب خشبية",
+        "description": "تصميم وتنفيذ أبواب خشبية"
+      },
+      {
+        "id": 20,
+        "image": "images/doors/4.jpeg",
+        "category": "أبواب خشبية",
+        "title": "أبواب خشبية",
+        "description": "تصميم وتنفيذ أبواب خشبية"
+      },
+      {
+        "id": 21,
+        "image": "images/doors/5.jpeg",
+        "category": "أبواب خشبية",
+        "title": "أبواب خشبية",
+        "description": "تصميم وتنفيذ أبواب خشبية"
       }
     ]
   },
