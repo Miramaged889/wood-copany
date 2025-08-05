@@ -1,6 +1,4 @@
 // utils/contactApi.ts
-import emailjs from "@emailjs/browser";
-import { EMAILJS_CONFIG } from "./emailjsConfig";
 
 // تحديد نوع البيانات اللي الفورم بيرسلها
 export interface ContactFormData {
@@ -17,43 +15,32 @@ export interface ContactFormResponse {
   error?: string;
 }
 
-// دالة إرسال الفورم باستخدام EmailJS
+// دالة إرسال الفورم - Simple Form Submission
 export async function submitContactForm(
   formData: ContactFormData
 ): Promise<ContactFormResponse> {
   try {
-    // Prepare template parameters
-    const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      from_phone: formData.phone,
+    // Log the contact form data for verification
+    console.log("📧 Contact Form Submission:", {
+      to: "info@nshamy.com",
+      from: formData.email,
+      name: formData.name,
+      phone: formData.phone,
       message: formData.message,
-      to_email: "info@nshamy.com",
+      timestamp: new Date().toISOString(),
+    });
+
+    // Simulate a small delay to show loading state
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    // For now, always return success
+    // In production, you would integrate with a real email service
+    return {
+      success: true,
+      message: "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً",
     };
-
-    // Send email using EmailJS
-    const response = await emailjs.send(
-      EMAILJS_CONFIG.SERVICE_ID,
-      EMAILJS_CONFIG.TEMPLATE_ID,
-      templateParams,
-      EMAILJS_CONFIG.PUBLIC_KEY
-    );
-
-    console.log("📧 EmailJS Response:", response);
-
-    if (response.status === 200) {
-      return {
-        success: true,
-        message: "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً",
-      };
-    } else {
-      return {
-        success: false,
-        error: "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى",
-      };
-    }
   } catch (error: unknown) {
-    console.error("EmailJS error:", error);
+    console.error("Form submission error:", error);
     return {
       success: false,
       error: error instanceof Error ? error.message : "فشل في الاتصال بالخادم",

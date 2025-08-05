@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Phone,
   Mail,
@@ -9,8 +9,6 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { ContactFormData, submitContactForm } from "../utils/contactApi";
-import emailjs from "@emailjs/browser";
-import { EMAILJS_CONFIG } from "../utils/emailjsConfig";
 
 const Contact = () => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -25,11 +23,6 @@ const Contact = () => {
     "idle" | "success" | "error"
   >("idle");
   const [statusMessage, setStatusMessage] = useState("");
-
-  // Initialize EmailJS
-  useEffect(() => {
-    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
