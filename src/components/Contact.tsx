@@ -1,6 +1,16 @@
-import React, { useState } from "react";
-import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Send,
+  MessageCircle,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 import { ContactFormData, submitContactForm } from "../utils/contactApi";
+import emailjs from "@emailjs/browser";
+import { EMAILJS_CONFIG } from "../utils/emailjsConfig";
 
 const Contact = () => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -11,25 +21,60 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    // Basic validation
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.message
+    ) {
+      setSubmitStatus("error");
+      setStatusMessage("يرجى ملء جميع الحقول المطلوبة");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setSubmitStatus("error");
+      setStatusMessage("يرجى إدخال بريد إلكتروني صحيح");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const result = await submitContactForm(formData);
 
       if (result.success) {
-        alert(result.message);
+        setSubmitStatus("success");
+        setStatusMessage(result.message || "تم إرسال رسالتك بنجاح!");
         setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
-        alert(
+        setSubmitStatus("error");
+        setStatusMessage(
           result.error || "حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى"
         );
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى");
+      setSubmitStatus("error");
+      setStatusMessage("حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى");
     } finally {
       setIsSubmitting(false);
     }
@@ -42,6 +87,12 @@ const Contact = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+
+    // Clear status when user starts typing
+    if (submitStatus !== "idle") {
+      setSubmitStatus("idle");
+      setStatusMessage("");
+    }
   };
 
   return (
@@ -153,6 +204,24 @@ const Contact = () => {
                 <div className="absolute -bottom-2 right-0 w-16 h-1 bg-[#C49E55]"></div>
               </h3>
 
+              {/* Status Message */}
+              {submitStatus !== "idle" && (
+                <div
+                  className={`mb-6 p-4 rounded-xl flex items-center space-x-3 space-x-reverse ${
+                    submitStatus === "success"
+                      ? "bg-green-50 border border-green-200 text-green-800"
+                      : "bg-red-50 border border-red-200 text-red-800"
+                  }`}
+                >
+                  {submitStatus === "success" ? (
+                    <CheckCircle className="h-6 w-6 text-green-600" />
+                  ) : (
+                    <AlertCircle className="h-6 w-6 text-red-600" />
+                  )}
+                  <span className="text-lg font-medium">{statusMessage}</span>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -168,6 +237,7 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      required
                       className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#C49E55] focus:border-transparent transition-all text-lg"
                       placeholder="أدخل اسمك الكامل"
                     />
@@ -206,6 +276,7 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    required
                     className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#C49E55] focus:border-transparent transition-all text-lg"
                     placeholder="أدخل بريدك الإلكتروني"
                   />
@@ -223,6 +294,7 @@ const Contact = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    required
                     rows={6}
                     className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#C49E55] focus:border-transparent transition-all text-lg resize-none"
                     placeholder="اكتب رسالتك هنا..."
