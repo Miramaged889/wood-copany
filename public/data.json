@@ -249,7 +249,7 @@
     ]
   },
   "projects": {
-    "categories": ["الكل", "سكني", "تجاري"],
+    "categories": ["الكل", "سكني", "تجاري", "مطابخ", "ديكورات"],
     "projects": [
       {
         "id": 1,
@@ -274,17 +274,94 @@
       },
       {
         "id": 4,
-        "title": "تصميم قبو فاخر",
-        "category": "تجاري",
-        "image": "images/projects/BASMENT.jpeg",
-        "description": "تصميم وتنفيذ قبو بتشطيبات خشبية راقية"
+        "title": "مطبخ خشبي فاخر",
+        "category": "مطابخ",
+        "image": "images/ketchin/img1.jpg",
+        "description": "تصميم وتنفيذ مطبخ خشبي بأحدث التقنيات والتشطيبات"
       },
       {
         "id": 5,
-        "title": "جدار خشبي مميز",
+        "title": "مطبخ عصري",
+        "category": "مطابخ",
+        "image": "images/ketchin/img2.jpg",
+        "description": "مطبخ عصري بتصميم أنيق وخامات فاخرة"
+      },
+      {
+        "id": 6,
+        "title": "مطبخ كلاسيكي",
+        "category": "مطابخ",
+        "image": "images/ketchin/img4.jpg",
+        "description": "مطبخ كلاسيكي بتصميم تقليدي وألوان دافئة"
+      },
+      {
+        "id": 7,
+        "title": "مكتب إداري متميز",
         "category": "تجاري",
-        "image": "images/projects/B2.jpeg",
-        "description": "تغليف جدار بألواح خشبية مع إضاءة خفية"
+        "image": "images/disk/img1.jpg",
+        "description": "تصميم مكتب إداري بديكورات خشبية أنيقة"
+      },
+      {
+        "id": 8,
+        "title": "مكتب تنفيذي",
+        "category": "تجاري",
+        "image": "images/disk/img2.jpg",
+        "description": "مكتب تنفيذي بتصميم عصري وأثاث مريح"
+      },
+      {
+        "id": 9,
+        "title": "قاعة اجتماعات",
+        "category": "تجاري",
+        "image": "images/disk/img3.jpg",
+        "description": "قاعة اجتماعات بتصميم احترافي وأثاث مريح"
+      },
+      {
+        "id": 10,
+        "title": "ديكور داخلي فاخر",
+        "category": "ديكورات",
+        "image": "images/decoor/1.jpg",
+        "description": "ديكورات داخلية فاخرة بتصميم عصري"
+      },
+      {
+        "id": 11,
+        "title": "ديكور غرفة معيشة",
+        "category": "ديكورات",
+        "image": "images/decoor/2.jpeg",
+        "description": "ديكورات غرفة معيشة بتصميم أنيق"
+      },
+      {
+        "id": 12,
+        "title": "ديكور غرفة نوم",
+        "category": "ديكورات",
+        "image": "images/decoor/3.jpeg",
+        "description": "ديكورات غرفة نوم بتصميم مريح"
+      },
+      {
+        "id": 13,
+        "title": "ديكور صالة استقبال",
+        "category": "ديكورات",
+        "image": "images/decoor/5.jpg",
+        "description": "ديكورات صالة استقبال بتصميم فاخر"
+      },
+      {
+        "id": 14,
+        "title": "ديكور غرفة طعام",
+        "category": "ديكورات",
+        "image": "images/decoor/6.jpeg",
+        "description": "ديكورات غرفة طعام بتصميم كلاسيكي"
+      },
+      {
+        "id": 15,
+        "title": "أعمال خشبية خارجية",
+        "category": "سكني",
+        "image": "images/workofwods/1.jpeg",
+        "description": "تنفيذ أعمال خشبية خارجية بأجود الخامات والتشطيبات العالية"
+      },
+      {
+        "id": 16,
+        "title": "ديكورات خارجية",
+        "category": "سكني",
+        "image": "images/workofwods/2.jpeg",
+        "description": "تصميم وتنفيذ ديكورات خشبية خارجية مقاومة للعوامل الجوية"
       }
     ]
   }

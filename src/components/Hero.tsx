@@ -1,5 +1,3 @@
-
-
 import { ArrowDown, Star, Award, Users } from "lucide-react";
 
 const Hero = () => {
@@ -39,7 +37,7 @@ const Hero = () => {
           <div className="text-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
               <Star className="h-8 w-8 text-[#C49E55] mx-auto mb-3" />
-              <h3 className="text-2xl font-bold mb-2">+15</h3>
+              <h3 className="text-2xl font-bold mb-2">+25</h3>
               <p className="text-sm">سنة من الخبرة</p>
             </div>
           </div>
