@@ -58,7 +58,7 @@ const About = () => {
             </div>
             <div className="absolute -bottom-4 -right-4 bg-[#8B5E3C] text-white p-6 rounded-lg shadow-xl">
               <div className="text-center">
-                <div className="text-2xl font-bold">+15</div>
+                <div className="text-2xl font-bold">+25</div>
                 <div className="text-sm">سنة خبرة</div>
               </div>
             </div>

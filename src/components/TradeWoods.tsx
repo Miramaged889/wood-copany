@@ -6,6 +6,7 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  Download,
 } from "lucide-react";
 
 interface Product {
@@ -79,6 +80,16 @@ const TradeWoods = () => {
     setSelectedProduct(filteredProducts[prevIndex]);
   };
 
+  const downloadBrochure = () => {
+    const brochureUrl = "/brochure.pdf";
+    const link = document.createElement("a");
+    link.href = brochureUrl;
+    link.download = "brochure.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   if (loading) {
     return (
       <section id="trade-woods" className="py-20 bg-white">
@@ -104,6 +115,26 @@ const TradeWoods = () => {
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             نوفر أجود أنواع الأخشاب المعالجة والخرسانية بأعلى معايير الجودة
           </p>
+        </div>
+
+        {/* Brochure Download Section */}
+        <div className="text-center mb-12">
+          <div className="bg-gradient-to-br from-[#F5F2EC] to-white rounded-lg p-8 shadow-lg border border-[#C49E55]/20 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-[#8B5E3C] mb-4">
+              تحميل البروشور الكامل
+            </h3>
+            <p className="text-[#2E2E2E] mb-6">
+              احصل على كتالوج شامل لجميع منتجاتنا من الأخشاب المعالجة والمواصفات
+              الفنية
+            </p>
+            <button
+              onClick={downloadBrochure}
+              className="bg-gradient-to-r from-[#C49E55] to-[#8B5E3C] hover:from-[#8B5E3C] hover:to-[#7A5235] text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center gap-2 shadow-md hover:shadow-lg"
+            >
+              <Download className="h-5 w-5" />
+              تحميل البروشور
+            </button>
+          </div>
         </div>
 
         {/* Category Filter */}
