@@ -21,7 +21,7 @@ const Hero = () => {
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         <div className="mb-8">
           <h1 className="hero-title text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            شركة النشامي
+            شركة النشامى
           </h1>
           <h2 className="hero-subtitle text-xl md:text-2xl mb-8 text-[#C49E55] font-semibold">
             النخبة في تجارة وتصنيع الأخشاب والديكورات

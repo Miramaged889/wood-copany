@@ -31,7 +31,7 @@ const Footer = () => {
                 <TreePine className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">شركة النشامي</h3>
+                <h3 className="text-xl font-bold">شركة النشامى</h3>
                 <p className="text-sm text-gray-400">تجارة وتصنيع الأخشاب</p>
               </div>
             </div>
@@ -118,7 +118,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {currentYear} شركة النشامي. جميع الحقوق محفوظة.
+              © {currentYear} شركة النشامى. جميع الحقوق محفوظة.
             </p>
             <p className="text-gray-400 text-sm flex items-center space-x-1 space-x-reverse">
               <span>صُنع بـ</span>
